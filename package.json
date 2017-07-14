@@ -1,0 +1,8 @@
+{
+  "name": "farx",
+  "version": "1.0.0",
+  "description": "Generate farx files for Fiddler Autoresponder",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT"
+}
