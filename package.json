@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Generate farx files for Fiddler Autoresponder",
   "main": "index.js",
+  "dependencies": {
+    "xmlbuilder": "^8.2.2"
+  },
   "author": "",
   "license": "MIT"
 }
