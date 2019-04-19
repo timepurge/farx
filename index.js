@@ -8,7 +8,7 @@ const CONST = {
 }
 
 const xmlState = builder.create(CONST.AS).ele(CONST.STATE)
-const savePath = (filepath,xmlstr) => {
+const savePath = (filepath,xmlstr,onSave) => {
     if(filepath){
         fs.stat(filepath, function (err, stats) {
             if(stats && stats.isDirectory()){
@@ -18,13 +18,17 @@ const savePath = (filepath,xmlstr) => {
             fs.writeFile(filepath, xmlstr, function(err) {
                 if(err) {
                     return console.log(err);
+                }else{
+                    if(onSave){
+                        onSave(filepath,xmlstr)
+                    }
                 }
             });
         });
     }
 }
 
-const generate = (matchactions, savepath) => {
+const generate = (matchactions, savepath, onSave) => {
     matchactions.forEach( (ma) => {
         xmlState.ele(CONST.RR, {
             'Match': ma.match,
@@ -33,7 +37,7 @@ const generate = (matchactions, savepath) => {
         });
     } );
     const xmlstr = xmlState.end({ pretty: true})
-    savePath(savepath,xmlstr)
+    savePath(savepath,xmlstr,onSave)
     return xmlstr
 }
 
