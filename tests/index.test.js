@@ -1,4 +1,5 @@
 const farx = require('../index');
+const fs = require('fs');
 
 const expectedxml = `<?xml version="1.0"?>
 <AutoResponder>
@@ -14,17 +15,15 @@ const rule = [
     }
 ]
 
-//const desktopPath = require('path').join(require('os').homedir(), 'Desktop');
-
 test( "xml generated matches expectation" , () =>{
     expect(farx.generate(rule)).toBe(expectedxml)
 } )
 
-/*
 test( "generates farx file at specified directory with dynamic filename" , (done) =>{
-    const farxxml = farx.generate(rule, desktopPath, (path)=>{
+    const farxxml = farx.generate(rule, __dirname, (path)=>{
+        fs.unlink(path);
         expect(path.slice(-4)).toBe("farx")
         done();
     })
 } )
-*/
+
