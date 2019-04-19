@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/timepurge/farx/tree/master.svg?style=svg)](https://circleci.com/gh/timepurge/farx/tree/master)
+
 # Generate .farx files for Fiddler Autoresponder 
 
 Useful when using Fiddler Autoresponder with builds that generate dynamic filenames, as in `create-react-app`.
