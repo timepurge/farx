@@ -23,7 +23,17 @@ test( "generates farx file at specified directory with dynamic filename" , (done
     const farxxml = farx.generate(rule, __dirname, (path)=>{
         fs.unlink(path);
         expect(path.slice(-4)).toBe("farx")
+        expect(farxxml).toBe(expectedxml)
         done();
     })
-} )
+})
 
+test( "generates farx file at specified directory with fixed filename" , (done) =>{
+    const fixedpath = require('path').join(__dirname,"test_fixed.farx")
+    const farxxml = farx.generate(rule, fixedpath, (path)=>{
+        fs.unlink(path);
+        expect(path).toBe(fixedpath)
+        expect(farxxml).toBe(expectedxml)
+        done();
+    })
+})
