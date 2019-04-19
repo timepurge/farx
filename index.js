@@ -7,13 +7,12 @@ const CONST = {
     RR: 'ResponseRule'
 }
 
-const xmlState = builder.create(CONST.AS).ele(CONST.STATE)
 const savePath = (filepath,xmlstr,onSave) => {
     if(filepath){
         fs.stat(filepath, function (err, stats) {
             if(stats && stats.isDirectory()){
-                const dynamic_filename = "\\fiddler_"+Date.now()+".farx";
-                filepath+=dynamic_filename
+                const dynamic_filename = "fiddler_"+Date.now()+".farx";
+                filepath=require('path').join(filepath,dynamic_filename)
             }
             fs.writeFile(filepath, xmlstr, function(err) {
                 if(err) {
@@ -29,6 +28,7 @@ const savePath = (filepath,xmlstr,onSave) => {
 }
 
 const generate = (matchactions, savepath, onSave) => {
+    const xmlState = builder.create(CONST.AS).ele(CONST.STATE)
     matchactions.forEach( (ma) => {
         xmlState.ele(CONST.RR, {
             'Match': ma.match,
